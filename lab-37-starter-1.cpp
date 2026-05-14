@@ -1,6 +1,7 @@
 //COMSC-210-5068， Lab 37, Yang Liu
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
 int sum_ascii(string code) {
@@ -14,8 +15,21 @@ int sum_ascii(string code) {
 }
 
 int main() {
-    string test = "ABC";
-    cout << sum_ascii(test) << endl; //expect 198
+    ifstream inFile("lab-37-data.txt");
+
+    if (!inFile) {
+        cout << "Could not open the file." << endl;
+        return 1;
+    }
+
+    string code;
+    long long grandTotal = 0;
+
+    while (inFile >> code) {
+        grandTotal += sum_ascii(code);
+    }
+
+    cout << "Total: " << grandTotal << endl;
 
     return 0;
 }
