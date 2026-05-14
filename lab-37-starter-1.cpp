@@ -2,9 +2,11 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <map>
+#include <list>
 using namespace std;
 
-int sum_ascii(string code) {
+int gen_hash_index(string code) {
     int sum = 0;
 
     for (char c : code) {
@@ -22,14 +24,44 @@ int main() {
         return 1;
     }
 
+    map<int, list<string>> hash_table;
     string code;
-    long long grandTotal = 0;
 
     while (inFile >> code) {
-        grandTotal += sum_ascii(code);
+        int hashIndex = gen_hash_index(code);
+        hash_table[hashIndex].push_back(code);
     }
 
-    cout << "Total: " << grandTotal << endl;
+int count = 0;
+
+for (auto entry : hash_table) {
+    cout << "Entry #" << count + 1 << endl;
+    cout << "Hash index: " << entry.first << endl;
+
+    cout << "Codes: ";
+
+
+    // Display only the first 10 codes in the list to keep the output from becoming too large
+    int codeCount = 0;
+    for (string value : entry.second) {
+        cout << value << " ";
+        codeCount++;
+
+        if (codeCount == 10) {
+            break;
+        }
+    }
+
+    cout << endl;
+    cout << "Total codes in the entry: " << entry.second.size() << endl;
+    cout << endl;
+
+    count++;
+
+    if (count == 100) {
+        break;
+    }
+}
 
     return 0;
 }
