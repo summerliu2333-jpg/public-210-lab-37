@@ -32,36 +32,55 @@ int main() {
         hash_table[hashIndex].push_back(code);
     }
 
-int count = 0;
+    int choice;
 
-for (auto entry : hash_table) {
-    cout << "Entry #" << count + 1 << endl;
-    cout << "Hash index: " << entry.first << endl;
+    while (true) {
+        cout << "---- MENU ----" << endl;
+        cout << "1. Print first 100 entries" << endl;
+        cout << "2. Search for a key" << endl;
+        cout << "3. Add a key" << endl;
+        cout << "4. Remove a key" << endl;
+        cout << "5. Modify a key" << endl;
+        cout << "6. Exit" << endl;
+        cout << "Enter choice: ";
 
-    cout << "Codes: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: {
+                int count = 0;
+
+                for (auto entry : hash_table) {
+                    cout << "Entry #" << count + 1 << endl;
+                    cout << "Hash index: " << entry.first << endl;
+
+                    cout << "Codes: ";
 
 
-    // Display only the first 10 codes in the list to keep the output from becoming too large
-    int codeCount = 0;
-    for (string value : entry.second) {
-        cout << value << " ";
-        codeCount++;
+                    // Display only the first 10 codes in the list to keep the output from becoming too large
+                    int codeCount = 0;
+                    for (string value : entry.second) {
+                        cout << value << " ";
+                        codeCount++;
 
-        if (codeCount == 10) {
-            break;
+                        if (codeCount == 10) {
+                            break;
+                        }
+                    }
+
+                    cout << endl;
+                    cout << "Total codes in the entry: " << entry.second.size() << endl;
+                    cout << endl;
+
+                    count++;
+
+                    if (count == 100) {
+                        break;
+                    }
+                }
+            }
         }
     }
-
-    cout << endl;
-    cout << "Total codes in the entry: " << entry.second.size() << endl;
-    cout << endl;
-
-    count++;
-
-    if (count == 100) {
-        break;
-    }
-}
 
     return 0;
 }
