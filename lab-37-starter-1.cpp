@@ -79,6 +79,7 @@ int main() {
                     }
                 }
             }
+
             case 2: {
                 string searchKey;
 
@@ -106,6 +107,25 @@ int main() {
 
                 break;
             }
+
+            case 3: {
+                string newKey;
+
+                cout << "Enter key to add: ";
+                cin >> newKey;
+
+                int hashIndex = gen_hash_index(newKey);
+
+                hash_table[hashIndex].push_back(newKey);
+
+                cout << "Key added." << endl;
+                cout << "Inserted into hash index: " << hashIndex << endl;
+                cout << "Total codes in this bucket now: "
+                    << hash_table[hashIndex].size() << endl;
+
+                break;
+            }
+            
         }
     }
 
