@@ -157,6 +157,53 @@ int main() {
                 break;
             }
 
+            case 5: {
+                string oldKey;
+                string newKey;
+
+                cout << "Enter key to modify: ";
+                cin >> oldKey;
+
+                int oldHash = gen_hash_index(oldKey);
+                bool found = false;
+
+                for (string value : hash_table[oldHash]) {
+                    if (value == oldKey) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found) {
+                    cout << "Enter new replacement key: ";
+                    cin >> newKey;
+
+                    hash_table[oldHash].remove(oldKey);
+
+                    int newHash = gen_hash_index(newKey);
+                    hash_table[newHash].push_back(newKey);
+
+                    cout << "Key modified." << endl;
+                    cout << "Old hash index: " << oldHash << endl;
+                    cout << "New hash index: " << newHash << endl;
+                }
+                else {
+                    cout << "Key not found. Nothing modified." << endl;
+                }
+
+                break;
+            }
+
+            case 6: {
+                cout << "Exiting program." << endl;
+                return 0;
+            }
+
+            default: {
+                cout << "Invalid option." << endl;
+                break;
+            }
+
         }
     }
 
