@@ -125,7 +125,38 @@ int main() {
 
                 break;
             }
-            
+
+            case 4: {
+                string removeKey;
+
+                cout << "Enter key to remove: ";
+                cin >> removeKey;
+
+                int hashIndex = gen_hash_index(removeKey);
+                bool found = false;
+
+                for (string value : hash_table[hashIndex]) {
+                    if (value == removeKey) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found) {
+                    hash_table[hashIndex].remove(removeKey);
+
+                    cout << "Key removed." << endl;
+                    cout << "Removed from hash index: " << hashIndex << endl;
+                    cout << "Total codes in this bucket now: "
+                        << hash_table[hashIndex].size() << endl;
+                }
+                else {
+                    cout << "Key not found. Nothing removed." << endl;
+                }
+
+                break;
+            }
+
         }
     }
 
