@@ -79,6 +79,33 @@ int main() {
                     }
                 }
             }
+            case 2: {
+                string searchKey;
+
+                cout << "Enter key to search: ";
+                cin >> searchKey;
+
+                int hashIndex = gen_hash_index(searchKey);
+                bool found = false;
+
+                for (string value : hash_table[hashIndex]) {
+                    if (value == searchKey) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found) {
+                    cout << "Key found." << endl;
+                    cout << "Hash index: " << hashIndex << endl;
+                }
+
+                else {
+                    cout << "Key not found." << endl;
+                }
+
+                break;
+            }
         }
     }
 
